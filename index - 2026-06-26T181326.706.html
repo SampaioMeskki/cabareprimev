@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Japa Rabuda - VIP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;0,800;0,900;1,800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-image: url('https://i.imgur.com/iHrftHe.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            width: 100%;
+            max-width: 420px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .profile-pic {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-top: 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            border: 4px solid #ffffff;
+        }
+        .name-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 15px;
+            margin-bottom: 12px;
+        }
+        .name-container h1 {
+            margin: 0;
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+        }
+        .verified { color: #2EA5FF; font-size: 20px; }
+        .status {
+            background-color: #D4F5E9;
+            color: #0A845C;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .status-dot { width: 8px; height: 8px; background-color: #0A845C; border-radius: 50%; }
+        .location {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 10px 22px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 25px;
+        }
+        .btn-telegram {
+            background-color: #33A8FF;
+            color: white;
+            text-decoration: none;
+            width: 100%;
+            padding: 15px 0;
+            border-radius: 40px;
+            font-size: 17px;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(51, 168, 255, 0.3);
+            transition: transform 0.2s;
+        }
+        .btn-telegram:active { transform: scale(0.97); }
+        .btn-telegram i { font-size: 32px; }
+        .media-container {
+            background: white;
+            padding: 8px;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 260px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+        .media-container video { width: 100%; border-radius: 10px; display: block; }
+        .footer-text {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 18px 25px;
+            border-radius: 15px;
+            font-size: 14px;
+            font-weight: 800;
+            font-style: italic;
+            width: 100%;
+            max-width: 320px;
+            line-height: 1.4;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://i.imgur.com/iHrftHe.png" alt="Perfil" class="profile-pic">
+        <div class="name-container">
+            <h1>Japa Rabuda</h1>
+            <i class="fa-solid fa-circle-check verified"></i>
+        </div>
+        <div class="status">
+            <div class="status-dot"></div>
+            ONLINE AGORA
+        </div>
+        <div class="location">
+            <i class="fa-solid fa-location-dot" style="color: #fff;"></i>
+            <span id="location-text">Disponível em São Paulo</span>
+        </div>
+        <a href="https://t.me/seugrupo" class="btn-telegram">
+            <i class="fa-brands fa-telegram"></i>
+            GRUPO VIP TELEGRAM
+        </a>
+        <div class="media-container">
+            <video src="https://i.imgur.com/92UnNMe.mp4" autoplay loop muted playsinline></video>
+        </div>
+        <div class="footer-text">
+            "Siga os passos acima caso o telegram não abra de imediato"
+        </div>
+    </div>
+    <script>
+        fetch('https://ipinfo.io/json')
+            .then(response => response.json())
+            .then(data => {
+                const city = data.city || "São Paulo";
+                document.getElementById('location-text').innerText = `Disponível em ${city}`;
+            })
+            .catch(() => {
+                document.getElementById('location-text').innerText = "Disponível em São Paulo";
+            });
+    </script>
+</body>
+</html>
